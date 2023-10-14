@@ -1,0 +1,37 @@
+/* ContractInteraction.css */
+
+/* Center the content horizontally */
+.flex {
+    display: flex;
+    justify-content: center;
+  }
+  
+  /* Loading message style */
+  .loading {
+    padding: 1rem 0;
+    text-align: center;
+  }
+  
+  /* Card style for purchased items */
+  .card {
+    width: 100%;
+  }
+  
+  /* Image style within the card */
+  .card img {
+    object-fit: cover;
+    height: 200px; /* Adjust the height as needed */
+  }
+  
+  /* Card footer style */
+  .card-footer {
+    text-align: center;
+    background-color: #f8f9fa; /* Customize the background color */
+  }
+  
+  /* No purchases message style */
+  .noPurchases {
+    padding: 1rem 0;
+    text-align: center;
+  }
+  

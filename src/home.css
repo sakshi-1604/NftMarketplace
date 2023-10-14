@@ -1,0 +1,317 @@
+/* Navbar styles with blue theme */
+/* styles.css or styles.scss */
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&display=swap');
+
+/* Other CSS/SCSS styles go here */
+
+.image{
+  background-color: #2f2f65;
+ 
+  height: 200px;
+  
+  display: flex;
+  align-self: center;
+
+  padding-bottom: 2%;
+ 
+}
+.navbar {
+  background-color: rgba(121,82,179,255); /* Blue background color */
+  color: #fff;
+  opacity: 0.9; /* Text color */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+ font-size: large;
+  padding-top: 0%;
+}
+
+.nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav-links li {
+  margin-right: 20px; /* Adjust spacing between navbar items */
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #fff; /* Link color */
+  font-weight: bold;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-links a:hover {
+  color: #0f1215; /* Link color on hover */
+}
+body {
+  background-color: #292D3E;
+  
+  color: white; /* Text color for the entire page */
+  margin: 0; /* Remove default margin to ensure full coverage */
+  padding: 0; 
+  /* Remove default padding */
+}
+.container {
+
+  border-radius: 10px;
+  width: 100;    height: 100%;
+  
+  
+  
+  text-align: center;
+  
+  
+  
+
+}
+
+
+
+
+.wallet-info {
+
+  font-size: 18px;
+  margin-bottom: 20px;
+  color: #a4aacb;
+  background-color: #0b1f55;
+
+ 
+  
+   /* Change color to your preference */
+}
+
+.item-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 10px;
+  margin-left: 4%;
+  margin-right: 4%;
+  border:  2px solid white;
+      margin-bottom: 4%;
+  opacity: 0.7 ;
+  
+  
+
+  
+
+
+ 
+}
+.item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center content horizontally */
+  justify-content: center; /* Center content vertically */
+
+  margin: 20px;
+  background-color:  #292d3e;
+  border: 1px solid #cdcccd;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  cursor: pointer;
+  position: relative;
+  opacity: 1 ;
+  margin-bottom: 2%;
+  
+  padding: 1%;
+  color: #fff;
+  border-radius: 10px; /* Add rounded corners */
+}
+
+.item-card:hover {
+  transform: scale(1.05);
+}
+
+.item-details {
+  padding: 15px;
+
+  background-color: rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  position: absolute;
+ 
+  top: 0;
+  left: 0;
+  right: 0;
+  border-radius: 10px; /* Add rounded corners to details */
+}
+
+.item-card:hover .item-details {
+  opacity: 1;
+}
+
+.item-title {
+  font-size: 20px;
+ margin-top: 0%;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #be8de1;
+  /* Change color to your preference */
+}
+
+.item-description{
+  color: #a4aacb;
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-weight: bold;
+}
+
+.item-price {
+  font-size: 16px;
+  font-weight: bold;
+  /* Change color to your preference */
+  margin-bottom: 10px;
+}
+
+.item-buy-button {
+  font-size: 16px;
+  width: 150px; /* Set a fixed width for the button */
+ height: 40px;
+ border: 1px solid white;
+  padding: 10px 20px;
+  /* Change button color to your preference */
+   /* Change text color to your preference */
+   background-color: black;
+   
+   
+  color: #89ddff;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  text-align: center;
+
+  font-weight: bold;
+  border-radius: 10px; /* Add rounded corners to the button */
+}
+
+.item-card:hover .item-buy-button {
+  opacity: 1;
+}
+
+.item-buy-button:hover {
+  background-color: #0056b3; /* Change button color on hover */
+}
+
+.logo-image{
+  width: 700px;
+  height: 300px;
+  float: right;
+  margin-top: 0%;
+  margin-right: 0;
+  margin-bottom: 0%;
+}
+.heading{
+  background-color: #180A55;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0%;
+  margin-bottom: 0%;
+ /* Add your background color here */
+  padding: 5px; 
+}
+body, h1, h2, h3, p {
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+ 
+  font-size: 50px;
+  font-weight: bolder;
+  font-family: 'Open Sans', sans-serif;
+  font-style: italic; 
+  height: 200px;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  background-color: #180A55;
+
+  /* Change color to your preference */
+}
+
+
+.dropdown-content {
+  background-color: whitesmoke;
+  opacity: 1;
+  color: black;
+  width: 200px;
+  position: absolute;
+  
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  right: 0;
+  width: 25%;
+   /* Position it at the right edge of the dropdown button */
+}
+.ether-image {
+ 
+  width: 22px;
+  height: 25px;
+color: white;
+margin-bottom: 0;
+align-items: center;
+  
+    }
+.collections{
+
+  color: rgb(199, 146, 234);
+  font-weight: bold;
+  height: fit-content
+  ;
+  margin-bottom: 2%;
+  font-size: 40px;
+  float: left;
+  margin-left: 5%;
+  margin-right: 5% ;
+  margin-top: 10%;
+}
+.join-us {
+  margin-top: 20px;
+  text-align: center;
+  background-color: #0f1215;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+.join-us h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.join-us-links {
+  display: flex;
+  justify-content: center;
+}
+
+.join-us-link {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #007bff; /* Link color, you can change it */
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.join-us-link:hover {
+  text-decoration: underline;
+}
+
+.dropdown-content{
+  font-size: medium;
+  white-space-collapse: 0;
+}

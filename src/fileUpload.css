@@ -1,0 +1,89 @@
+/* form.css */
+.main {
+    text-align: center;
+    background-color: black;
+    width: 75%;
+    height: 55%;
+    justify-content: center;
+    margin-left: 13%;
+    padding-top: 1%;
+    margin-top: 5%;
+    color: #ffffff;
+    margin-top: 20px;
+  }
+  
+  .main2 {
+    display: inline-block;
+    text-align: left;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    background-color: black;
+    height: 85%;
+    padding-bottom: 1%;
+    color: #fff;
+  }
+  
+  form {
+    display: grid;
+    gap: 20px; /* Increased gap for better readability */
+    margin-top: 20px;
+  }
+  
+  .form-field {
+    display: flex;
+    align-items: center;
+  }
+ 
+  label {
+    font-weight: bold;
+    width: 200px;
+    margin-right: 10px; /* Added margin to create space between label and input */
+    font-size: 14px;
+    color: #ffffff;
+  }
+  
+  input,
+  select {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #000; /* Adjust font color */
+    background-color: #fff; /* Input background color */
+  }
+  
+  textarea {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #000; /* Adjust font color */
+    background-color: #fff; /* Textarea background color */
+  }
+  
+  .mint-button {
+    padding: 1px 1px;
+    border: 1px solid #ccc;
+
+    border-radius: 4px;
+    font-size: 20px;
+    cursor: pointer;
+    width: fit-content;
+    margin-bottom: 5px;
+    margin-left: 40%;
+
+  }
+  .status{
+    font-size: small;
+    border: 1px solid black;
+    padding: 3px;
+  }
+  
+  .mint-button:hover {
+    background-color: #0056b3;
+  }
+  
