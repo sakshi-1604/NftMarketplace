@@ -125,7 +125,7 @@ this.toggleDropdown = this.toggleDropdown.bind(this);
     let itemCount = await market_contract.itemCount()
     console.log('itemCount :',itemCount);
     let items = [];
-    for (let i = 8; i <= itemCount.toNumber(); i++) {
+    for (let i = 20; i <= itemCount.toNumber(); i++) {
       const item = await market_contract.items(i)
       
       if (!item.sold) {
@@ -212,6 +212,15 @@ render() {
           </h1>
         </div>
       </div>
+      {isWalletConnected ? (
+        <div className="wallet-info">
+          <p></p>
+        </div>
+      ) : (
+        <p className="wallet-info">
+          Please connect your Ethereum wallet (e.g., MetaMask).
+        </p>
+      )}
       {loading ? (
         <div className="loading">
           <p>Loading...</p>
