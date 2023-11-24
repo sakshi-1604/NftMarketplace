@@ -1,8 +1,9 @@
 {
-  "homepage": "https://sakshi-1604.github.io/NFTMarketplace",
+  "homepage": "https://sakshi-1604.github.io/NftMarketplace/",
+               
   "name": "my-react-app",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "devDependencies": {
     "@nomicfoundation/hardhat-ethers": "^3.0.4",
     "@nomicfoundation/hardhat-verify": "^1.1.1",
