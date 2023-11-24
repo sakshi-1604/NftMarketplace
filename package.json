@@ -1,5 +1,5 @@
 {
-  "homepage": "https://sakshi-1604.github.io/NFT_Marketplace",
+  "homepage": "https://sakshi-1604.github.io/NFTMarketplace",
   "name": "my-react-app",
   "version": "0.1.0",
   "private": true,
@@ -31,6 +31,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    
     "start": "react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
