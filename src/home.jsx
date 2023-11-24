@@ -21,7 +21,7 @@ class ContractInteraction extends Component {
     super(props);
     this.state = {
  
-  
+      timer: 20,
  contract: null,
  contractAddress : process.env.REACT_APP_NFT_ADD,
  contractABI : nftAbi,
@@ -75,47 +75,89 @@ this.toggleDropdown = this.toggleDropdown.bind(this);
   closeModal = () => {
     this.setState({ isModalOpen: false });
   };
-
   async componentDidMount() {
     try {
-      // Connect to Ethereum provider (e.g., MetaMask)
+      this.timerInterval = setInterval(() => {
+        this.setState((prevState) => ({
+          timer: prevState.timer - 1,
+        }));
+        if (this.state.timer === 0) {
+          clearInterval(this.timerInterval); // Stop the timer when it reaches 0
+          this.setState({ loading: false }); // Set loading to false
+          this.loadMarketplaceItems(); // Load marketplace items
+        }
+      }, 1000); 
+      // Check if MetaMask is installed
       if (window.ethereum) {
-        await window.ethereum.request({ method: 'eth_requestAccounts' });
-        this.setState({ isWalletConnected: true });
-
-        const provider =  new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const signerAddress = await signer.getAddress();
-
-        // Create a contract instance
-        const contract = new ethers.Contract(
-          this.state.contractAddress,
-          this.state.contractABI, 
-          signer
-        );
-
-        const market_contract = new ethers.Contract(
-            this.state.market_contractAddress,
-            this.state.market_contractABI, //no need to use state there
+        // Request Ethereum wallet access
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+  
+        if (accounts.length > 0) {
+          // User has connected their wallet
+          this.setState({ isWalletConnected: true });
+  
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          const signer = provider.getSigner();
+          const signerAddress = await signer.getAddress();
+  
+          // Create a contract instance
+          const contract = new ethers.Contract(
+            this.state.contractAddress,
+            this.state.contractABI,
             signer
           );
-
-        this.setState({ contract });
-        this.setState({ market_contract, signerAddress });
-          console.log("sig add:", signerAddress);
-
   
-        const tokenCount = await contract.count();
-        this.setState({ tokenCount: tokenCount.toString() });
+          // Initialize market contract separately
+          const market_contract = new ethers.Contract(
+            this.state.market_contractAddress,
+            this.state.market_contractABI,
+            signer
+          );
+  
+          this.setState({ contract, market_contract, signerAddress });
+  
+          const tokenCount = await contract.count();
+          this.setState({ tokenCount: tokenCount.toString() });
+  
+          // Load marketplace items only if the wallet is connected
+          this.loadMarketplaceItems();
+        } else {
+          // User chose not to connect their wallet
+          console.warn('User chose not to connect their wallet.');
+        }
       } else {
-        console.error('MetaMask or compatible Ethereum wallet not found.');
+        console.warn('MetaMask or compatible Ethereum wallet not found.');
+        // Handle the case where MetaMask is not available
+        
+          // Specify the RPC (Remote Procedure Call) endpoint URL for an Ethereum provider
+          const RPC = process.env.REACT_APP_RPC ;
+        
+          // Create a JsonRpcProvider instance to connect to the Ethereum node
+          const provider = new ethers.providers.JsonRpcProvider(RPC);
+        
+          // Create an instance of the Contract class representing the smart contract
+          // Takes the contract address, contract ABI, and the provider as arguments
+          const market_contract = new ethers.Contract( this.state.market_contractAddress,
+            this.state.market_contractABI, provider);
+          const contract = new ethers.Contract( this.state.contractAddress,
+            this.state.contractABI, provider);
+          this.setState({ contract, market_contract });
+          
+          const tokenCount = await contract.count();
+          this.setState({ tokenCount: tokenCount.toString() });
+  
+          this.loadMarketplaceItems();
+          // Return the created contract instance
+          //return icoContract;
+        }
       }
-      this.loadMarketplaceItems();
+     catch (error) {
+      // Define a function that returns an Ethereum contract instance
 
-    } catch (error) {
+
       console.error('Error connecting to Ethereum:', error);
     }
-}
+  }
   
    loadMarketplaceItems = async () => { 
     try{
@@ -178,7 +220,20 @@ this.toggleDropdown = this.toggleDropdown.bind(this);
         console.error('Error buying marketplace item:', error);
       }
   }
- 
+  // Add the handleBuyButtonClick method to your component
+handleBuyButtonClick = async (item) => {
+  const { signerAddress } = this.state;
+  // Check if signerAddress is null
+  if (signerAddress === null) {
+    // If null, show an alert to connect the wallet
+    window.alert('Please connect your Goerli test Ethereum wallet (e.g., MetaMask).');
+  } else {
+    // If not null, proceed with the buy logic
+    await this.buyMarketItem(item);
+  }
+}
+  
+  
 
 render() {
   const { tokenCount, isWalletConnected, items, signerAddress, loading } = this.state;
@@ -218,12 +273,15 @@ render() {
         </div>
       ) : (
         <p className="wallet-info">
-          Please connect your Ethereum wallet (e.g., MetaMask).
+          Please connect your Goerli testnet Ethereum wallet (MetaMask).
         </p>
       )}
       {loading ? (
         <div className="loading">
           <p>Loading...</p>
+          {/* Display the countdown timer */}
+          <p>{this.state.timer} seconds remaining</p>
+      
         </div>
       ) : (
         <div>
@@ -233,11 +291,9 @@ render() {
             </div>
           ) : (
             <p className="wallet-info">
-              Please connect your Ethereum wallet (e.g., MetaMask).
-            </p>
+                </p>
           )}
-          {/* Your component content */}
-          {/* Conditionally render the modal */}
+         
           {this.state.isModalOpen && <Modal onClose={this.closeModal} />}
           <div className="collections">EXPLORE <br/> OUR <br/> COLLECTIONS </div>
           <div className="item-container">
@@ -256,7 +312,7 @@ render() {
                     {ethers.utils.formatEther(item.totalPrice)} ETH
                   </div>
                   <Button
-                    onClick={() => this.buyMarketItem(item)}
+                    onClick={() => this.handleBuyButtonClick(item)}
                     variant="primary"
                     size="lg"
                     className="item-buy-button"
